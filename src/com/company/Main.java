@@ -17,7 +17,6 @@ public class Main
     {
       //  getCoronaCases("Netherlands");
         // getITILAnswers();
-        // getMeme();
         //  getJoke();
     }
 
@@ -45,47 +44,7 @@ public class Main
             e.printStackTrace();
         }
     }
-
-    private static void getMeme()
-    {
-        final String URL_START = "https://www.reddit.com/r/memes/comments/";
-        List<String> urls = new ArrayList<>();
-        String URL = String.format("https://www.reddit.com/r/memes/");
-        try
-        {
-            final Document document = Jsoup.connect(URL).get();
-            Elements divs = document.select("div.SubredditVars-r-memes");
-            Element answer = document.selectFirst("span");
-            System.out.println(document.html().length());
-            int count = 0;
-            String url = "";
-            for (int i = 0; i < 20000; i++)
-            {
-
-                if (document.html().charAt(i) == URL_START.charAt(count))
-                {
-                    url += document.html().charAt(i);
-                    count++;
-                    if (count >= URL_START.length())
-                    {
-                        urls.add(url);
-                        url = "";
-                        count = 0;
-                    }
-                } else
-                {
-                    count = 0;
-                }
-            }
-            System.out.println(urls.size());
-
-        } catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-
-    }
-
+    
     private static void getCoronaCases(String findCountry)
     {
         final String[] columnNames = {"#", "Country", "Total Cases", "New Cases"};
